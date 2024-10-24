@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <title>Page not found</title>
     <script type="text/javascript">
-      // Redirige toutes les URL non reconnues vers index.html tout en conservant l'URL
-      const path = window.location.pathname;
-      const redirectTo = window.location.origin + "/portfolio" + path;
-
-      window.location.replace(redirectTo);
+        // Vérifie si l'utilisateur est déjà dans le bon chemin de base
+        if (!window.location.pathname.startsWith("/portfolio")) {
+            // Redirige vers le chemin de base s'il n'y est pas
+            window.location.replace("/portfolio");
+        } else {
+            // Redirige vers index.html pour gérer toutes les autres routes
+            window.location.replace("/portfolio/index.html");
+        }
     </script>
-  </head>
-  <body>
+</head>
+
+<body>
     <h1>404 - Page not found</h1>
-  </body>
+</body>
+
 </html>
