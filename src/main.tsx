@@ -5,7 +5,7 @@ import App from './App';
 import './index.css';
 
 const root = document.getElementById('root');
-const basename = import.meta.env.MODE === 'production' ? '/Portfolio' : '/';
+const basename = import.meta.env.MODE === 'production' ? '/portfolio' : '/';
 
 if (root) {
   createRoot(root).render(
