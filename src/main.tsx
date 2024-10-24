@@ -5,12 +5,11 @@ import App from './App';
 import './index.css';
 
 const root = document.getElementById('root');
-const basename = import.meta.env.MODE === 'production' ? '/portfolio' : '/';
 
 if (root) {
   createRoot(root).render(
     <StrictMode>
-      <HashRouter basename={basename}>
+      <HashRouter>
         <App />
       </HashRouter>
     </StrictMode>
