@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Page not found</title>
+    <script type="text/javascript">
+        // Redirection vers index.html tout en conservant l'URL complète
+        const pathname = window.location.pathname;
+        const origin = window.location.origin;
+
+        // Vérifier si l'URL correspond à un fichier spécifique de votre dépôt
+        const isFileInRepo = pathname.includes("<portfolio>");
+
+        if (isFileInRepo) {
+            window.location.replace(origin + "/<portfolio>/" + pathname.replace("/<portfolio>", "").replace(/^\//, ""));
+        } else {
+            window.location.replace(origin + "/<portfolio>/");
+        }
+    </script>
+</head>
+
+<body>
+    <h1>404 - Page not found</h1>
+</body>
+
+</html>
