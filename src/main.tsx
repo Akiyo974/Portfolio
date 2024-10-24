@@ -8,9 +8,9 @@ const root = document.getElementById('root');
 if (root) {
   createRoot(root).render(
     <StrictMode>
-      <HashRouter>
+      <BrowserRouter>
         <App />
-      </HashRouter>
+      </BrowserRouter>
     </StrictMode>
   );
 }
