@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background-color: black;
+  min-height: 100%;
+}
+
+body {
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+::selection {
+  background-color: white;
+  color: black;
+}
+
+.cursor-none,
+.cursor-none * {
+  cursor: none !important;
+}
+
+.cursor-follower {
+  transform: translate(0, 0);
+}
+
+.cursor-dot {
+  transform: translate(0, 0);
+}
+
+.cursor-hover {
+  transform: scale(1.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Ensure smooth scrolling */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Interactive elements hover effect */
+a, button, input, textarea, [role="button"] {
+  transition: all 0.3s ease;
+}
+
+a:hover, button:hover, [role="button"]:hover {
+  transform: scale(1.05);
+}
+
+/* Ensure text is always visible */
+.text-white {
+  color: white !important;
+}
+
+.text-white\/60 {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.text-white\/70 {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.text-white\/80 {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Ensure background colors are properly applied */
+.bg-black {
+  background-color: black !important;
+}
+
+.bg-white {
+  background-color: white !important;
+}
+
+/* Fix for navigation links */
+.nav-link {
+  color: white !important;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
