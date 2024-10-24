@@ -5,12 +5,12 @@ import { ProjectsSection } from '../components/ProjectsSection';
 import { ContactSection } from '../components/ContactSection';
 import { Footer } from '../components/Footer';
 import { useLenis } from '../hooks/useLenis';
+import { Chatbot } from '../components/Chatbot/Chatbot';
 
 export const HomePage = () => {
   useLenis();
 
   useEffect(() => {
-    // Réinitialisation de la position de défilement au montage du composant
     window.scrollTo(0, 0);
   }, []);
 
@@ -21,6 +21,12 @@ export const HomePage = () => {
       <ProjectsSection />
       <ContactSection />
       <Footer />
+      <Chatbot
+        botName="Assistant"
+        welcomeMessage="👋 Bonjour ! Comment puis-je vous aider aujourd'hui ?"
+        position="bottom-right"
+      />
+
     </main>
   );
 };

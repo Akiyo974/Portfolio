@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Github } from 'lucide-react';
 import { Footer } from '../components/Footer';
+import { Chatbot } from '../components/Chatbot/Chatbot';
 
 interface Repository {
   id: number;
@@ -174,6 +175,11 @@ export const ProjectsPage = () => {
         )}
       </div>
       <Footer />
+      <Chatbot
+        botName="Assistant"
+        welcomeMessage="👋 Bonjour ! Comment puis-je vous aider aujourd'hui ?"
+        position="bottom-right"
+      />
     </main>
   );
 };
