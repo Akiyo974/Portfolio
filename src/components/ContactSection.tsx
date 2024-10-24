@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, X } from 'lucide-react';
 import emailjs from 'emailjs-com';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -14,6 +14,9 @@ export const ContactSection: React.FC = () => {
     email: '',
     message: ''
   });
+  const [popupVisible, setPopupVisible] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+  const [popupType, setPopupType] = useState<'success' | 'error'>('success');
 
   useEffect(() => {
     if (sectionRef.current) {
@@ -55,15 +58,24 @@ export const ContactSection: React.FC = () => {
       'nuVbYv2KJyTRA702i' // User ID (Public Key)
     ).then(
       (result) => {
-        alert('Message envoyé avec succès !');
+        setPopupMessage('Message envoyé avec succès !');
+        setPopupType('success');
+        setPopupVisible(true);
         formRef.current?.reset();
         setFormData({ name: '', email: '', message: '' });
       },
       (error) => {
-        alert("Erreur lors de l'envoi du message.");
+        setPopupMessage("Erreur lors de l'envoi du message.");
+        setPopupType('error');
+        setPopupVisible(true);
         console.error(error.text);
       }
     );
+
+    // Masquer le popup après 3 secondes
+    setTimeout(() => {
+      setPopupVisible(false);
+    }, 3000);
   };
 
   return (
@@ -160,6 +172,23 @@ export const ContactSection: React.FC = () => {
             </button>
           </form>
         </div>
+
+        {/* Popup personnalisé */}
+        {popupVisible && (
+          <div className={`fixed inset-0 flex items-center justify-center z-50 bg-black/50`}>
+            <div className="bg-white p-6 rounded-lg shadow-lg w-80 md:w-96 relative">
+              <button
+                onClick={() => setPopupVisible(false)}
+                className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition-colors"
+              >
+                <X size={20} />
+              </button>
+              <h3 className={`text-lg font-medium ${popupType === 'success' ? 'text-green-500' : 'text-red-500'}`}>
+                {popupMessage}
+              </h3>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

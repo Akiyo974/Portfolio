@@ -96,32 +96,37 @@ export const Chatbot: React.FC<ChatbotProps> = ({
         onClick={() => setIsOpen(true)}
         className={`fixed ${positionClass} bottom-4 p-3 bg-black border border-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 hover:bg-gray-900`}
       >
-        <MessageCircle className="w-5 h-5 text-white" />
+        <MessageCircle className="w-5 h-5" />
       </button>
     );
   }
 
   return (
     <div
-      className={`fixed ${positionClass} bottom-4 w-[320px] ${
+      className={`fixed ${positionClass} bottom-4 w-80 md:w-96 ${
         isMinimized ? 'h-12' : 'h-[480px]'
-      } bg-white rounded-lg shadow-xl transition-all duration-300 z-50 flex flex-col border border-gray-200`}
+      } bg-black border border-white/10 rounded-lg shadow-lg flex flex-col transition-all duration-300 z-50`}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-3 py-2 rounded-t-lg bg-black">
-        <h3 className="text-sm text-white font-medium">{botName}</h3>
+      <div className="flex items-center justify-between p-4 border-b border-white/10 bg-black">
+        <div className="flex items-center gap-2">
+          <MessageCircle className="w-5 h-5 text-white" />
+          <span className="font-medium text-white">{botName}</span>
+        </div>
         <div className="flex gap-1">
           <button
             onClick={() => setIsMinimized(!isMinimized)}
-            className="p-1 text-gray-400 hover:text-white transition-colors rounded"
+            className="p-1 hover:bg-white/10 rounded-full transition-colors"
+            aria-label="Minimiser le chat"
           >
-            {isMinimized ? <Maximize2 size={16} /> : <MinusSquare size={16} />}
+            {isMinimized ? <Maximize2 size={16} className="text-white" /> : <MinusSquare size={16} className="text-white" />}
           </button>
           <button
             onClick={handleClose}
-            className="p-1 text-gray-400 hover:text-white transition-colors rounded"
+            className="p-1 hover:bg-white/10 rounded-full transition-colors"
+            aria-label="Fermer le chat"
           >
-            <X size={16} />
+            <X size={16} className="text-white" />
           </button>
         </div>
       </div>
@@ -129,9 +134,25 @@ export const Chatbot: React.FC<ChatbotProps> = ({
       {!isMinimized && (
         <>
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-3 bg-white">
+          <div className="flex-1 p-4 space-y-4 overflow-y-auto bg-black">
             {messages.map((message, index) => (
-              <ChatMessage key={index} message={message} />
+              <div
+                key={index}
+                className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
+              >
+                <div
+                  className={`max-w-[80%] p-3 rounded-lg ${
+                    message.isBot
+                      ? 'bg-white/10 text-white border border-white/20'
+                      : 'bg-white text-black'
+                  }`}
+                >
+                  <p className="text-sm">{message.content}</p>
+                  <span className="text-xs opacity-50 mt-1 block">
+                    {message.timestamp.toLocaleTimeString()}
+                  </span>
+                </div>
+              </div>
             ))}
             {isTyping && (
               <div className="flex justify-start mb-3">
@@ -144,8 +165,8 @@ export const Chatbot: React.FC<ChatbotProps> = ({
           </div>
 
           {/* Input */}
-          <div className="p-3 border-t border-gray-200 bg-gray-50">
-            <div className="flex items-center gap-2">
+          <div className="p-4 border-t border-white/10 bg-black">
+            <div className="flex gap-2">
               <input
                 ref={inputRef}
                 type="text"
@@ -153,14 +174,15 @@ export const Chatbot: React.FC<ChatbotProps> = ({
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Tapez votre message..."
-                className="flex-1 p-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-black focus:border-black bg-white text-black"
+                className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-white/30 transition-colors"
               />
               <button
                 onClick={handleSendMessage}
-                className="p-2 rounded-lg text-white bg-black hover:bg-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="p-2 bg-white text-black rounded-lg hover:bg-white/90 transition-colors"
+                aria-label="Envoyer"
                 disabled={!inputMessage.trim() || isTyping}
               >
-                <Send size={16} />
+                <Send className="w-5 h-5" />
               </button>
             </div>
           </div>
