@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Github, ExternalLink, ArrowRight } from 'lucide-react';
@@ -40,7 +41,7 @@ const projects: Project[] = [
     languages: ["Scss", "Bootstrap", "JavaScript"],
     image: Webana,
     siteUrl: "https://akiyo974.github.io/webana/",
-    codeUrl: "https://github.com/Akiyo974/webana" 
+    codeUrl: "https://github.com/Akiyo974/webana"
   }
 ];
 
@@ -183,8 +184,8 @@ export const ProjectsSection = () => {
 
         {/* Bouton Voir Tous les Projets */}
         <div className="mt-20 text-center">
-          <a
-            href="/projects"
+          <Link
+            to="/projects"
             ref={buttonRef}
             className="inline-flex items-center gap-3 px-8 py-4 text-lg font-medium 
                      border-2 border-white rounded-lg hover:bg-white hover:text-black 
@@ -192,7 +193,7 @@ export const ProjectsSection = () => {
           >
             Voir Tous les Projets
             <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
