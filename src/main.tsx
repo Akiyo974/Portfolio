@@ -5,10 +5,12 @@ import App from './App';
 import './index.css';
 
 const root = document.getElementById('root');
+const basename = import.meta.env.MODE === 'production' ? '/Portfolio' : '/';
+
 if (root) {
   createRoot(root).render(
     <StrictMode>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <App />
       </BrowserRouter>
     </StrictMode>
