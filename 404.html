@@ -1,20 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8" />
     <title>Page not found</title>
     <script type="text/javascript">
-        // Redirige toutes les routes inconnues vers index.html tout en conservant l'URL complète
-        var pathname = window.location.pathname;
-        var origin = window.location.origin;
-
-        if (pathname.startsWith("/portfolio")) {
-            // Redirige vers la racine de votre projet sans les balises
-            window.location.replace(origin + pathname);
-        } else {
-            // Fallback vers la page d'accueil du projet
-            window.location.replace(origin + "/portfolio/");
+        // Vérifie si l'URL contient le bon chemin de base
+        if (!window.location.pathname.startsWith("/portfolio")) {
+            // Redirige l'utilisateur vers la page d'accueil de l'application
+            window.location.replace("/portfolio");
         }
     </script>
 </head>
