@@ -146,7 +146,8 @@ export const AboutSection = () => {
               <a
                 href="https://akiyo974.github.io/portfolio/assets/DIJ_CH_Cv.pdf"
                 download
-                className="px-6 py-3 border border-white text-white rounded-lg font-semibold hover:bg-white hover:text-black transition-colors"
+                className="px-6 py-3 text-sm border border-white/20 rounded-lg font-semibold
+                    hover:bg-white hover:text-black transition-colors duration-300"
               >
                 Télécharger le CV
               </a>
@@ -175,7 +176,7 @@ export const AboutSection = () => {
       <span
         key={index}
         className="px-3 py-1 text-sm border border-white/20 rounded-full 
-                                     hover:bg-white hover:text-black transition-colors duration-300"
+                    hover:bg-white hover:text-black transition-colors duration-300"
       >
         {skill}
       </span>
