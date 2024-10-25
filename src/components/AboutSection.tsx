@@ -5,8 +5,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
-  'HTML/CSS', 'JavaScript', 'React', 'TypeScript',
-  'PHP', 'MySQL', 'jQuery', 'SCSS',
+  'HTML/CSS', 'JavaScript', 'React', 'TypeScript', 
+  'PHP', 'MySQL', 'Git', 'jQuery', 'SCSS', 'Tailwind CSS', 'Gsap',
   'Bootstrap', 'UI/UX Design', 'Animation Web', 'Développement Front-end'
 ];
 
@@ -42,7 +42,7 @@ export const AboutSection = () => {
       // Animation des paragraphes de texte
       textRefs.current.forEach((text, index) => {
         if (text) {
-          gsap.fromTo(text, 
+          gsap.fromTo(text,
             { y: 50, opacity: 0 },
             {
               scrollTrigger: {
@@ -111,25 +111,25 @@ export const AboutSection = () => {
     <section ref={sectionRef} id="about" className="min-h-screen w-full bg-black text-white py-24 px-8">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold mb-16 border-b border-white/20 pb-4">À propos</h2>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="space-y-8">
             <p ref={el => textRefs.current[0] = el} className="text-lg leading-relaxed text-white">
-              Actuellement étudiant en Techniques d'Intégration Multimédia au Cégep de Jonquière, 
-              je suis passionné par la création d'expériences utilisateurs captivantes à travers le 
+              Actuellement étudiant en Techniques d'Intégration Multimédia au Cégep de Jonquière,
+              je suis passionné par la création d'expériences utilisateurs captivantes à travers le
               développement web et le design.
             </p>
-            
+
             <p ref={el => textRefs.current[1] = el} className="text-lg leading-relaxed text-white">
-              Mon parcours inclut un poste de Chargé de Communication au CHU de La Réunion, 
-              où j'ai géré les mises à jour du site web et créé divers supports de communication. 
-              Cette expérience a alimenté ma passion pour le développement web et m'a poussé à approfondir 
+              Mon parcours inclut un poste de Chargé de Communication au CHU de La Réunion,
+              où j'ai géré les mises à jour du site web et créé divers supports de communication.
+              Cette expérience a alimenté ma passion pour le développement web et m'a poussé à approfondir
               mes compétences techniques.
             </p>
 
             <p ref={el => textRefs.current[2] = el} className="text-lg leading-relaxed text-white">
-              Je m'épanouis dans des environnements dynamiques où je peux appliquer ma créativité pour 
-              concevoir des interfaces utilisateurs esthétiques et fonctionnelles, tout en recherchant 
+              Je m'épanouis dans des environnements dynamiques où je peux appliquer ma créativité pour
+              concevoir des interfaces utilisateurs esthétiques et fonctionnelles, tout en recherchant
               de nouveaux défis et opportunités d'innovation.
             </p>
 
@@ -169,19 +169,20 @@ export const AboutSection = () => {
             </div>
 
             <div>
-              <h3 className="text-2xl font-semibold mb-6">Compétences</h3>
-              <div ref={skillsRef} className="flex flex-wrap gap-3">
-                {skills.map((skill, index) => (
-                  <span
-                    key={index}
-                    className="px-4 py-2 border border-white/20 rounded-full text-sm text-white 
-                             hover:bg-white hover:text-black transition-colors duration-300"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+  <h3 className="text-2xl font-semibold mb-6">Compétences</h3>
+  <div ref={skillsRef} className="flex flex-wrap gap-3">
+    {skills.map((skill, index) => (
+      <span
+        key={index}
+        className="px-3 py-1 text-sm border border-white/20 rounded-full 
+                                     hover:bg-white hover:text-black transition-colors duration-300"
+      >
+        {skill}
+      </span>
+    ))}
+  </div>
+</div>
+
           </div>
         </div>
       </div>
