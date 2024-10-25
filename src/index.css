@@ -51,7 +51,6 @@ body {
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* Ensure smooth scrolling */
 html.lenis {
   height: auto;
 }
@@ -68,7 +67,6 @@ html.lenis {
   overflow: hidden;
 }
 
-/* Interactive elements hover effect */
 a, button, input, textarea, [role="button"] {
   transition: all 0.3s ease;
 }
@@ -77,7 +75,6 @@ a:hover, button:hover, [role="button"]:hover {
   transform: scale(1.05);
 }
 
-/* Ensure text is always visible */
 .text-white {
   color: white !important;
 }
@@ -94,7 +91,6 @@ a:hover, button:hover, [role="button"]:hover {
   color: rgba(255, 255, 255, 0.8) !important;
 }
 
-/* Ensure background colors are properly applied */
 .bg-black {
   background-color: black !important;
 }
@@ -103,7 +99,6 @@ a:hover, button:hover, [role="button"]:hover {
   background-color: white !important;
 }
 
-/* Fix for navigation links */
 .nav-link {
   color: white !important;
   opacity: 0.6;
@@ -112,4 +107,23 @@ a:hover, button:hover, [role="button"]:hover {
 
 .nav-link:hover {
   opacity: 1;
+}
+
+/* Personnalisation de la barre de défilement */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 2px solid #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #f0f0f0; 
 }
