@@ -149,13 +149,13 @@ export const ProjectsSection = () => {
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4 mt-4">
                     <a
                       href={project.siteUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`flex items-center gap-2 px-4 py-2 rounded-lg 
-                                 transition-colors duration-300 ${project.siteUrl === "non" ? "bg-gray-500 cursor-not-allowed" : "bg-white text-black hover:bg-white/90"}`}
+               transition-colors duration-300 ${project.siteUrl === "non" ? "bg-gray-500 cursor-not-allowed" : "bg-white text-black hover:bg-white/90"}`}
                       aria-disabled={project.siteUrl === "non"}
                       onClick={(e) => project.siteUrl === "non" && e.preventDefault()}
                     >
@@ -168,7 +168,7 @@ export const ProjectsSection = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`flex items-center gap-2 px-4 py-2 border rounded-lg 
-                                 transition-colors duration-300 ${project.codeUrl === "non" ? "border-gray-500 text-gray-500 cursor-not-allowed" : "border-white/20 hover:bg-white hover:text-black"}`}
+               transition-colors duration-300 ${project.codeUrl === "non" ? "border-gray-500 text-gray-500 cursor-not-allowed" : "border-white/20 hover:bg-white hover:text-black"}`}
                       aria-disabled={project.codeUrl === "non"}
                       onClick={(e) => project.codeUrl === "non" && e.preventDefault()}
                     >

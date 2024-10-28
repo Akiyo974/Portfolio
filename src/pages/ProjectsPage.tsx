@@ -22,7 +22,7 @@ const EXCLUDED_REPOS = [
 ];
 
 // Informations personnalisées pour certains dépôts
-const CUSTOM_REPO_INFO: Record<string, { 
+const CUSTOM_REPO_INFO: Record<string, {
   showCode: boolean;
   customLabel?: string;
   customDescription?: string;
@@ -34,7 +34,6 @@ const CUSTOM_REPO_INFO: Record<string, {
   },
 };
 
-// Fonction pour capitaliser la première lettre d'une chaîne de caractères
 const capitalizeFirstLetter = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
@@ -49,11 +48,11 @@ export const ProjectsPage = () => {
       try {
         const response = await fetch('https://api.github.com/users/Akiyo974/repos');
         const data = await response.json();
-        
-        const filteredRepos = data.filter((repo: Repository) => 
+
+        const filteredRepos = data.filter((repo: Repository) =>
           !EXCLUDED_REPOS.includes(repo.name)
         );
-        
+
         setRepos(filteredRepos);
         setRepoCount(filteredRepos.length);
         setLoading(false);
@@ -90,7 +89,7 @@ export const ProjectsPage = () => {
             </a>
           </div>
         </div>
-        
+
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
@@ -99,14 +98,14 @@ export const ProjectsPage = () => {
           <div className="grid grid-cols-1 gap-8">
             {repos.map((repo) => {
               const customInfo = CUSTOM_REPO_INFO[repo.name];
-              
+
               return (
                 <div
                   key={repo.id}
                   className="bg-white/5 rounded-lg p-8 hover:bg-white/10 transition-colors"
                 >
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
+                  <div className="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left mb-4">
+                    <div className="mb-4 sm:mb-0">
                       <h2 className="text-2xl font-bold">
                         {capitalizeFirstLetter(customInfo?.customLabel || repo.name)}
                       </h2>
@@ -116,7 +115,7 @@ export const ProjectsPage = () => {
                         </span>
                       )}
                     </div>
-                    <div className="flex gap-3">
+                    <div className="flex flex-row gap-3 justify-center sm:justify-start">
                       {repo.homepage && (
                         <a
                           href={repo.homepage}
@@ -144,10 +143,10 @@ export const ProjectsPage = () => {
                     {customInfo?.customDescription || repo.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
                     {repo.language && (
                       <span className="px-3 py-1 bg-white/10 rounded-full text-sm">
-                        {repo.language}
+                        {capitalizeFirstLetter(repo.language)}
                       </span>
                     )}
                     {repo.topics?.map((topic) => (
@@ -155,7 +154,7 @@ export const ProjectsPage = () => {
                         key={topic}
                         className="px-3 py-1 border border-white/20 rounded-full text-sm"
                       >
-                        {topic}
+                        {capitalizeFirstLetter(topic)}
                       </span>
                     ))}
                     {repo.stargazers_count > 0 && (

@@ -56,12 +56,12 @@ export const CustomCursor = () => {
       <div
         ref={cursorRef}
         className="cursor-follower fixed pointer-events-none z-50 w-8 h-8 -ml-4 -mt-4 rounded-full 
-                   border border-white/30 transition-transform duration-300 ease-out"
+                   border border-white/30 transition-transform duration-300 ease-out hidden md:block"
       />
       <div
         ref={cursorDotRef}
         className="cursor-dot fixed pointer-events-none z-50 w-1 h-1 -ml-0.5 -mt-0.5 
-                   bg-white rounded-full"
+                   bg-white rounded-full hidden md:block"
       />
     </>
   );

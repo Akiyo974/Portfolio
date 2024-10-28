@@ -13,8 +13,8 @@ export const Footer = () => {
   return (
     <footer className="w-full bg-black text-white border-t border-white/10">
       <div className="max-w-6xl mx-auto px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 text-center md:text-left">
+          <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center gap-2 mb-4">
               <button
                 onClick={toggleStar}
@@ -34,7 +34,7 @@ export const Footer = () => {
             </p>
           </div>
 
-          <div>
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="font-medium mb-4">Navigation</h3>
             <ul className="space-y-2">
               <li>
@@ -64,7 +64,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="font-medium mb-4">Localisation</h3>
             <p className="text-white/60">Saguenay</p>
             <p className="text-white/60">Québec, Canada</p>

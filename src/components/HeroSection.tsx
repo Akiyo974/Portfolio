@@ -140,14 +140,13 @@ export const HeroSection = () => {
             </div>
           </div>
         </div>
-
         <button 
           onClick={toggleStar}
-          className="animate-in absolute top-8 right-8 p-2 hover:scale-110 transition-transform duration-300 focus:outline-none"
+          className="animate-in absolute top-4 right-4 md:top-8 md:right-8 p-2 hover:scale-110 transition-transform duration-300 focus:outline-none"
           aria-label={isStarFilled ? "Retirer l'étoile" : "Ajouter l'étoile"}
         >
           <Star 
-            className={`star-icon w-8 h-8 text-white transition-colors duration-300 ${
+            className={`star-icon w-6 h-6 md:w-8 md:h-8 text-white transition-colors duration-300 ${
               isStarFilled ? 'fill-white' : 'fill-transparent'
             }`}
           />
@@ -157,7 +156,7 @@ export const HeroSection = () => {
           <img 
             src={logo} 
             alt="Logo" 
-            className="w-full mb-8" // Le logo occupe toute la largeur de l'écran 
+            className="w-full mb-8"
           />
           <div className="w-full h-px bg-white/20 mb-8"></div>
           <div className="text-sm uppercase tracking-widest text-white">
