@@ -20,6 +20,14 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Webana",
+    description: "Webana - L'Art du Katana est un site e-commerce démonstratif conçu avec React et TailwindCSS. Il présente l'histoire des katanas et simule leur vente avec des filtres dynamiques, un panier, et un mode clair/sombre.",
+    languages: ["React", "TailwindCSS", "TypeScript", "JSON"],
+    image: Webana,
+    siteUrl: "https://akiyo974.github.io/webana/",
+    codeUrl: "https://github.com/Akiyo974/webana"
+  },
+  {
     title: "AkiProject",
     description: "Gestionnaire de tâches et messagerie en temps réel développés avec Bootstrap, jQuery, et PHP. Conçu pour démontrer les compétences en communication asynchrone et gestion de tâches dans un contexte académique.",
     languages: ["Php", "SQL", "Bootstrap", "jQuery", "AJAX"],
@@ -34,14 +42,6 @@ const projects: Project[] = [
     image: AkiMusic,
     siteUrl: "https://christenalexisdijoux.techniquesmedia.com/AkiMusic/index.php#",
     codeUrl: "non"
-  },
-  {
-    title: "Webana",
-    description: "Ce projet est une refonte personnelle d'un ancien site web sur l'histoire des katanas, visant à moderniser et améliorer l'organisation des styles avec HTML, CSS, JavaScript, Bootstrap, jQuery et SCSS pour une meilleure modularité et maintenabilité.",
-    languages: ["Scss", "Bootstrap", "JavaScript"],
-    image: Webana,
-    siteUrl: "https://akiyo974.github.io/webana/",
-    codeUrl: "https://github.com/Akiyo974/webana"
   }
 ];
 
