@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Github } from 'lucide-react';
-import { Footer } from '../components/Footer';
+import { Footer } from '../components/Footer_Projet';
 import { Chatbot } from '../components/Chatbot/Chatbot';
 
 interface Repository {
@@ -44,6 +44,9 @@ export const ProjectsPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Remettre la page en haut lors du chargement
+    window.scrollTo(0, 0);
+
     const fetchRepos = async () => {
       try {
         const response = await fetch('https://api.github.com/users/Akiyo974/repos');
