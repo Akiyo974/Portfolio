@@ -1,8 +1,11 @@
+// ProjectsPage.tsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Github } from 'lucide-react';
 import { Footer } from '../components/Footer_Projet';
 import { Chatbot } from '../components/Chatbot/Chatbot';
+import { ProjectFilter } from '../components/project/ProjectFilter';
+import { ProjectsList } from '../components/project/ProjectsList';
 
 interface Repository {
   id: number;
@@ -15,13 +18,8 @@ interface Repository {
   homepage?: string;
 }
 
-// Liste des dépôts à exclure de l'affichage
-const EXCLUDED_REPOS = [
-  'Akiyo974',
-  'repo-a-cacher-2'
-];
+const EXCLUDED_REPOS = ['Akiyo974', 'repo-a-cacher-2'];
 
-// Informations personnalisées pour certains dépôts
 const CUSTOM_REPO_INFO: Record<string, {
   showCode: boolean;
   customLabel?: string;
@@ -34,27 +32,27 @@ const CUSTOM_REPO_INFO: Record<string, {
   },
 };
 
-const capitalizeFirstLetter = (str: string) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
 export const ProjectsPage = () => {
   const [repos, setRepos] = useState<Repository[]>([]);
   const [repoCount, setRepoCount] = useState<number>(0);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
+  const [availableLanguages, setAvailableLanguages] = useState<string[]>([]);
 
   useEffect(() => {
-    // Remettre la page en haut lors du chargement
-    window.scrollTo(0, 0);
-
     const fetchRepos = async () => {
       try {
         const response = await fetch('https://api.github.com/users/Akiyo974/repos');
         const data = await response.json();
 
+        // Filtrer les dépôts exclus et configurer les langages uniques
         const filteredRepos = data.filter((repo: Repository) =>
           !EXCLUDED_REPOS.includes(repo.name)
         );
+
+        const languages = Array.from(new Set(filteredRepos.map(repo => repo.language).filter(Boolean)));
+        setAvailableLanguages(languages);
 
         setRepos(filteredRepos);
         setRepoCount(filteredRepos.length);
@@ -66,122 +64,52 @@ export const ProjectsPage = () => {
     };
 
     fetchRepos();
-  }, []);
+  }, []); // Empty dependency array ensures this runs only once on mount
+
+  const filteredRepos = repos.filter((repo) =>
+    (!selectedLanguage || repo.language === selectedLanguage) &&
+    (repo.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+     repo.description?.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
 
   return (
     <main className="min-h-screen bg-black text-white">
       <div className="max-w-6xl mx-auto px-8 py-12">
-        <div className="flex items-center justify-between mb-16">
-          <Link
-            to="/"
-            className="flex items-center gap-2 text-white hover:text-white/80 transition-colors"
-          >
+        <div className="flex items-center justify-between mb-8">
+          <Link to="/" className="flex items-center gap-2 text-white hover:text-white/80 transition-colors">
             <ArrowLeft className="w-5 h-5" />
             <span>Retour à l'accueil</span>
           </Link>
           <div className="flex items-center gap-6">
             <h1 className="text-4xl font-bold">Tous les Projets</h1>
-            <a
-              href="https://github.com/Akiyo974"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
-            >
+            <a href="https://github.com/Akiyo974" target="_blank" rel="noopener noreferrer"
+               className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
               <Github className="w-5 h-5" />
               <span>{repoCount} Dépôts</span>
             </a>
           </div>
         </div>
 
+        {/* Project Filter */}
+        <ProjectFilter
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          selectedLanguage={selectedLanguage}
+          setSelectedLanguage={setSelectedLanguage}
+          availableLanguages={availableLanguages}
+        />
+
+        {/* Project List */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
           </div>
-        ) : repos.length > 0 ? (
-          <div className="grid grid-cols-1 gap-8">
-            {repos.map((repo) => {
-              const customInfo = CUSTOM_REPO_INFO[repo.name];
-
-              return (
-                <div
-                  key={repo.id}
-                  className="bg-white/5 rounded-lg p-8 hover:bg-white/10 transition-colors"
-                >
-                  <div className="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left mb-4">
-                    <div className="mb-4 sm:mb-0">
-                      <h2 className="text-2xl font-bold">
-                        {capitalizeFirstLetter(customInfo?.customLabel || repo.name)}
-                      </h2>
-                      {customInfo && (
-                        <span className="text-sm text-white/60 mt-1 block">
-                          Dépôt: {capitalizeFirstLetter(repo.name)}
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex flex-row gap-3 justify-center sm:justify-start">
-                      {repo.homepage && (
-                        <a
-                          href={repo.homepage}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-4 py-2 bg-white text-black rounded-lg hover:bg-white/90 transition-colors text-sm"
-                        >
-                          Démo en direct
-                        </a>
-                      )}
-                      {(!customInfo || customInfo.showCode) && (
-                        <a
-                          href={repo.html_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-4 py-2 border border-white/20 rounded-lg hover:bg-white hover:text-black transition-colors text-sm"
-                        >
-                          Voir le code
-                        </a>
-                      )}
-                    </div>
-                  </div>
-
-                  <p className="text-white/70 mb-6">
-                    {customInfo?.customDescription || repo.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
-                    {repo.language && (
-                      <span className="px-3 py-1 bg-white/10 rounded-full text-sm">
-                        {capitalizeFirstLetter(repo.language)}
-                      </span>
-                    )}
-                    {repo.topics?.map((topic) => (
-                      <span
-                        key={topic}
-                        className="px-3 py-1 border border-white/20 rounded-full text-sm"
-                      >
-                        {capitalizeFirstLetter(topic)}
-                      </span>
-                    ))}
-                    {repo.stargazers_count > 0 && (
-                      <span className="px-3 py-1 bg-white/10 rounded-full text-sm flex items-center gap-1">
-                        ★ {repo.stargazers_count}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
         ) : (
-          <div className="text-center py-20">
-            <p className="text-xl text-white/60">Aucun dépôt trouvé</p>
-          </div>
+          <ProjectsList projects={filteredRepos} />
         )}
       </div>
       <Footer />
-      <Chatbot
-        botName="Assistant"
-        welcomeMessage="👋 Bonjour ! Comment puis-je vous aider aujourd'hui ?"
-        position="bottom-right"
-      />
+      <Chatbot botName="Assistant" welcomeMessage="👋 Bonjour ! Comment puis-je vous aider aujourd'hui ?" position="bottom-right" />
     </main>
   );
 };
