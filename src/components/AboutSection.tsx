@@ -136,7 +136,7 @@ export const AboutSection = () => {
             {/* Boutons pour afficher et télécharger le CV */}
             <div className="mt-8 flex gap-4">
               <a
-                href="https://akiyo974.github.io/portfolio/assets/DIJ_CH_Cv.pdf"
+                href="https://akiyo974.github.io/portfolio/assets/Dij_Ch_Cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-colors"
