@@ -156,7 +156,7 @@ export const AboutSection = () => {
 
           <div className="space-y-16">
             <div>
-              <h3 className="text-2xl font-semibold mb-6">Formation</h3>
+              <h3 className="text-2xl font-semibold mb-6">Formations</h3>
               <div ref={experienceRef} className="space-y-8">
                 {formations.map((exp, index) => (
                   <div key={index} className="border-l-2 border-white/20 pl-6">
