@@ -48,7 +48,7 @@ export const HeroSection = () => {
 
       const horizontalLine = new THREE.Line(horizontalGeometry, material);
       const verticalLine = new THREE.Line(verticalGeometry, material);
-      
+
       lines.push(horizontalLine, verticalLine);
       scene.add(horizontalLine, verticalLine);
     }
@@ -77,13 +77,13 @@ export const HeroSection = () => {
     window.addEventListener('resize', handleResize);
 
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-    
+
     if (containerRef.current) {
       const elements = containerRef.current.querySelectorAll('.animate-in');
-      tl.fromTo(elements, 
-        { 
+      tl.fromTo(elements,
+        {
           y: 30,
-          opacity: 0 
+          opacity: 0
         },
         {
           y: 0,
@@ -103,7 +103,7 @@ export const HeroSection = () => {
 
   const toggleStar = () => {
     setIsStarFilled(!isStarFilled);
-    
+
     const starElement = document.querySelector('.star-icon');
     gsap.from(starElement, {
       scale: 0.5,
@@ -115,7 +115,7 @@ export const HeroSection = () => {
   return (
     <section className="relative h-screen w-full overflow-hidden">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
-      
+
       <div ref={contentRef} className="relative z-10 h-full text-white opacity-0">
         <div ref={containerRef} className="absolute top-0 left-0 right-0 pt-8">
           <div className="w-full grid grid-cols-3 text-left px-8">
@@ -123,39 +123,45 @@ export const HeroSection = () => {
               <h2 className="animate-in text-2xl font-bold tracking-tight text-white">Christen</h2>
               <h2 className="animate-in text-2xl tracking-tight text-white">Dijoux</h2>
             </div>
-            
+
             <div className="flex flex-col">
               <p className="animate-in text-base text-white">Saguenay</p>
               <p className="animate-in text-base text-white">Québec, Canada</p>
             </div>
-            
+
             <div className="flex flex-col">
               <p className="animate-in text-base text-white">Développeur</p>
               <p className="animate-in text-base mb-4 text-white">Front-end</p>
 
               <div className="animate-in flex flex-col mt-32">
-                <p className="text-7xl font-bold leading-tight text-white">{hours}</p>
-                <p className="text-7xl font-bold leading-tight text-white">{minutes}</p>
+                <p className="text-7xl font-bold leading-tight text-white">
+                  {hours}
+                  <span className="text-2xl ml-1">h</span>
+                </p>
+                <p className="text-7xl font-bold leading-tight text-white">
+                  {minutes}
+                  <span className="text-2xl ml-1">m</span>
+                </p>
               </div>
+
             </div>
           </div>
         </div>
-        <button 
+        <button
           onClick={toggleStar}
           className="animate-in absolute top-4 right-4 md:top-8 md:right-8 p-2 hover:scale-110 transition-transform duration-300 focus:outline-none"
           aria-label={isStarFilled ? "Retirer l'étoile" : "Ajouter l'étoile"}
         >
-          <Star 
-            className={`star-icon w-6 h-6 md:w-8 md:h-8 text-white transition-colors duration-300 ${
-              isStarFilled ? 'fill-white' : 'fill-transparent'
-            }`}
+          <Star
+            className={`star-icon w-6 h-6 md:w-8 md:h-8 text-white transition-colors duration-300 ${isStarFilled ? 'fill-white' : 'fill-transparent'
+              }`}
           />
         </button>
 
         <div className="animate-in absolute bottom-0 left-0 right-0 px-8 pb-8">
-          <img 
-            src={logo} 
-            alt="Logo" 
+          <img
+            src={logo}
+            alt="Logo"
             className="w-full mb-8"
           />
           <div className="w-full h-px bg-white/20 mb-8"></div>

@@ -82,7 +82,7 @@ export const ContactSection: React.FC = () => {
     <section ref={sectionRef} className="w-full py-24 px-8 bg-black text-white" id="contact">
       <div className="max-w-6xl mx-auto contact-content">
         <h2 className="text-5xl font-bold mb-12 text-center">Contact</h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           {/* Informations de contact */}
           <div className="space-y-8">
@@ -90,30 +90,30 @@ export const ContactSection: React.FC = () => {
             <p className="text-white/60 mb-8 text-lg">
               Je suis toujours ouvert à de nouvelles opportunités et collaborations. N'hésitez pas à me contacter !
             </p>
-            
+
             <div className="space-y-6">
               <a href="mailto:christen.dijoux@gmail.com" className="flex items-center gap-4 text-white/60 hover:text-white transition-colors">
                 <Mail className="w-6 h-6" />
                 <span>christen.dijoux@gmail.com</span>
               </a>
-              
+
               <a href="tel:+14183762612" className="flex items-center gap-4 text-white/60 hover:text-white transition-colors">
                 <Phone className="w-6 h-6" />
                 <span>+1 (418) 376-2612</span>
               </a>
-              
+
               <div className="flex items-center gap-4 text-white/60">
                 <MapPin className="w-6 h-6" />
                 <span>Saguenay, Québec, Canada</span>
               </div>
-              
+
               <div className="flex gap-6 pt-4">
-                <a href="https://github.com/Akiyo974" target="_blank" rel="noopener noreferrer" 
-                   className="text-white/60 hover:text-white transition-colors">
+                <a href="https://github.com/Akiyo974" target="_blank" rel="noopener noreferrer"
+                  className="text-white/60 hover:text-white transition-colors">
                   <Github className="w-6 h-6" />
                 </a>
                 <a href="https://www.linkedin.com/in/christen-dijoux" target="_blank" rel="noopener noreferrer"
-                   className="text-white/60 hover:text-white transition-colors">
+                  className="text-white/60 hover:text-white transition-colors">
                   <Linkedin className="w-6 h-6" />
                 </a>
               </div>
@@ -131,11 +131,17 @@ export const ContactSection: React.FC = () => {
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-white/30 transition-colors"
                 placeholder="Votre nom"
                 value={formData.name}
-                onChange={handleChange}
+                onChange={(e) => {
+                  const onlyLetters = e.target.value.replace(/[^a-zA-ZÀ-ÿ\s'-]/g, '');
+                  setFormData({
+                    ...formData,
+                    name: onlyLetters
+                  });
+                }}
                 required
               />
             </div>
-            
+
             <div>
               <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
               <input
@@ -149,7 +155,7 @@ export const ContactSection: React.FC = () => {
                 required
               />
             </div>
-            
+
             <div>
               <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
               <textarea
@@ -163,7 +169,7 @@ export const ContactSection: React.FC = () => {
                 required
               ></textarea>
             </div>
-            
+
             <button
               type="submit"
               className="w-full py-3 px-6 bg-white text-black font-medium rounded-lg hover:bg-white/90 transition-colors"
