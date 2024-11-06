@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Github, ExternalLink, ArrowRight } from 'lucide-react';
-import AkiProject from '/src/assets/AkiProject.png';
-import AkiMusic from '/src/assets/AkiMusic.png';
-import Webana from '/src/assets/Webana.png';
+import AkiProject from '/src/assets/AkiProject.webp';
+import AkiMusic from '/src/assets/AkiMusic.webp';
+import Webana from '/src/assets/Webana.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
